@@ -43,31 +43,8 @@ public class Plugin {
     }
 
     @Listener
-    public void onPlayerLogin(ServerSideConnectionEvent.Login evt) {
-        evt.user().inventory().offer(ItemStack.of(ItemTypes.WOODEN_PICKAXE));
-    }
-
-    @Listener
-    public void onPlayerJoin(ServerSideConnectionEvent.Join evt) {
-        evt.player().inventory().offer(ItemStack.of(ItemTypes.IRON_PICKAXE));
-    }
-
-    @Listener
     public void onRegisterCommands(RegisterCommandEvent<Command.Parameterized> evt) {
-        evt.register(pluginContainer, Command.builder()
-                .executor(context -> {
-                    Carrier carrier = context.cause().first(Carrier.class)
-                            .orElseThrow(() -> new CommandException(Component.text("You don't have an Inventory! :(")));
-                    carrier.inventory().offer(ItemStack.of(ItemTypes.GOLDEN_PICKAXE));
-                    return CommandResult.success();
-                })
-                .build(), "test");
-    }
 
-    @Listener
-    public void onInventoryChange(ChangeInventoryEvent evt) {
-        logger.info("ChangeInventoryEvent: " + evt.getClass());
-        evt.transactions().forEach(tr -> logger.info(tr.toString()));
     }
 
     @Listener
