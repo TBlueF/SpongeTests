@@ -54,7 +54,8 @@ public class Plugin {
 
     @Listener
     public void onServerStart(StartedEngineEvent<Server> evt) {
-
+        logger.info("Main world UUID:");
+        logger.info(evt.engine().worldManager().defaultWorld().uniqueId());
     }
 
 }
